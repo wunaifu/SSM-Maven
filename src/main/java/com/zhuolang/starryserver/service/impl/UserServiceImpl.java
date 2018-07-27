@@ -95,4 +95,9 @@ public class UserServiceImpl implements UserService{
     public int updataUser(User user) {
         return userDao.updateUser(user);
     }
+
+    @Override
+    public int updateUserByIdSelective(User user) {
+        return userDao.updateUserByIdSelective(user);
+    }
 }

@@ -68,14 +68,13 @@
         update user_tab
         <set>
             <if test="name != null">
-                phone = #{phone,jdbcType=VARCHAR},
-                name=#{user.name},
+                name=#{user.name,jdbcType=VARCHAR},
             </if>
             <if test="gender != null">
                 gender=#{user.gender},
             </if>
             <if test="age != null">
-                age=#{user.age},
+                age=#{user.age,jdbcType=VARCHAR},
             </if>
             <if test="habit != null">
                 habit=#{user.habit},

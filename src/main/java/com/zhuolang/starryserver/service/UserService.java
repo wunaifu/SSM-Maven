@@ -66,4 +66,6 @@ public interface UserService {
      * 通过id完善用户表
      */
     int updataUser(User user);
+
+    int updateUserByIdSelective(User user);
 }

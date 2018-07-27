@@ -57,5 +57,23 @@ public class UserController {
 
     }
 
+    @ResponseBody
+    @RequestMapping(value = "/updateUserByIdSelective")
+    public ResultDto updateUserByIdSelective(HttpServletRequest request, HttpServletResponse response)
+            throws IOException{
 
+        User user = new User();
+        user.setId(1);
+        user.setAddress("更新地址啦");
+        user.setAge(23);
+        user.setHeight("sdfdfsa");
+
+        int r = userService.updateUserByIdSelective(user);
+        if (r == 1) {
+            return new ResultDto(200,"更新成功",user);
+        } else {
+            return new ResultDto(200,"更新失败",null);
+        }
+
+    }
 }
