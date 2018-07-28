@@ -7,7 +7,7 @@
 ![](images/微信截图_20180728141651.png)
 
 ##IntelliJ IDEA中安装、配置以及使用Maven
-链接：https://blog.csdn.net/ck4438707/article/details/53377413（或自行百度学习）
+链接：https://blog.csdn.net/ck4438707/article/details/53377413  （或自行百度学习）
 
 ##Maven项目导入，按照图片，next到finish，项目导入成功
 （项目导入成功后检查下项目中IDEA的Maven仓库路径）
@@ -68,7 +68,7 @@ controller一般只获取请求参数，返回结果，不进行复杂的数据�
 * jdbc.properties:连接数据库文件
 * mybatis-config.xml:mybatis配置文件
 * Pom.xml;POM包括了所有的项目信息，jar包的依赖等
-    groupId:项目或者组织的唯一标志，并且配置时生成路径也是由此生成，如		org.myproject.mojo生成的相对路径为：/org/myproject/mojo
+    groupId:项目或者组织的唯一标志，并且配置时生成路径也是由此生成，如org.myproject.mojo生成的相对路径为：/org/myproject/mojo
     artifactId:项目的通用名称
     version:项目的版本
 
