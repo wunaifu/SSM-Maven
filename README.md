@@ -6,8 +6,6 @@
 
 ![](images/微信截图_20180728141651.png)
 
-## IntelliJ IDEA中安装、配置以及使用Maven
-链接：https://blog.csdn.net/ck4438707/article/details/53377413（或自行百度学习）
 ##IntelliJ IDEA中安装、配置以及使用Maven
 链接：https://blog.csdn.net/ck4438707/article/details/53377413  （或自行百度学习）
 
