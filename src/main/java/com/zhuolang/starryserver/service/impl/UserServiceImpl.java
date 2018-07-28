@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 /**
- * Created by wunaifu on 2017/8/8.
+ * Created by wunaifu on 2018/7/28.
  */
 @Service
 public class UserServiceImpl implements UserService{
@@ -99,5 +99,10 @@ public class UserServiceImpl implements UserService{
     @Override
     public int updateUserByIdSelective(User user) {
         return userDao.updateUserByIdSelective(user);
+    }
+
+    @Override
+    public int insertUserSelective(User user) {
+        return userDao.insertUserSelective(user);
     }
 }

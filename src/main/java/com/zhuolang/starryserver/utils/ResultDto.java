@@ -1,5 +1,7 @@
 package com.zhuolang.starryserver.utils;
-
+/**
+ * Created by wnf on 2018-7-28.
+ */
 public class ResultDto {
     // 响应业务状态
     private Integer status;
@@ -14,6 +16,12 @@ public class ResultDto {
         this.status = status;
         this.msg = msg;
         this.data = data;
+    }
+
+    public ResultDto(Integer status, String msg) {
+        this.status = status;
+        this.msg = msg;
+        this.data = null;
     }
 
     public ResultDto(Object data) {

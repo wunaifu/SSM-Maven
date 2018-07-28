@@ -5,7 +5,7 @@ import com.zhuolang.starryserver.entity.User;
 import java.util.List;
 
 /**
- * Created by wunaifu on 2017/8/8.
+ * Created by wunaifu on 2018/7/28.
  * 定义方法，只需要定义，实现在对应的*ServiceImpl.java里实现，这就是spring做的工作
  */
 public interface UserService {
@@ -68,4 +68,6 @@ public interface UserService {
     int updataUser(User user);
 
     int updateUserByIdSelective(User user);
+
+    int insertUserSelective(User user);
 }

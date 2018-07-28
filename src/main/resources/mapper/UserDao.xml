@@ -58,7 +58,7 @@
          update  user_tab
          SET name=#{user.name},gender=#{user.gender},age=#{user.age}
          ,habit=#{user.habit},birthday=#{user.birthday},job=#{user.job}
-         ,address=#{user.address},weight=#{user.weight},height=#{user.height}
+         ,address=#{user.address},weigh=#{user.weigh},height=#{user.height}
          ,xingZuo=#{user.xingZuo},signature=#{user.signature}
          WHERE id=#{user.id}
     </update>
@@ -67,42 +67,138 @@
     <update id="updateUserByIdSelective">
         update user_tab
         <set>
-            <if test="name != null">
-                name=#{user.name,jdbcType=VARCHAR},
+            <if test="user.name != null">
+                name=#{user.name},
             </if>
-            <if test="gender != null">
+            <if test="user.gender != null">
                 gender=#{user.gender},
             </if>
-            <if test="age != null">
-                age=#{user.age,jdbcType=VARCHAR},
+            <if test="user.age != null">
+                age=#{user.age},
             </if>
-            <if test="habit != null">
+            <if test="user.habit != null">
                 habit=#{user.habit},
             </if>
-            <if test="birthday != null">
+            <if test="user.birthday != null">
                 birthday=#{user.birthday},
             </if>
-            <if test="job != null">
+            <if test="user.job != null">
                 job=#{user.job} ,
             </if>
-            <if test="address != null">
+            <if test="user.address != null">
                 address=#{user.address},
             </if>
-            <if test="weight != null">
-                weight=#{user.weight},
+            <if test="user.weigh != null">
+                weigh=#{user.weigh},
             </if>
-            <if test="height != null">
+            <if test="user.height != null">
                 height=#{user.height},
             </if>
-            <if test="xingZuo != null">
+            <if test="user.xingZuo != null">
                 xingZuo=#{user.xingZuo},
             </if>
-            <if test="signature != null">
+            <if test="user.signature != null">
                 signature=#{user.signature}
             </if>
         </set>
         WHERE id=#{user.id}
     </update>
 
-
+    <insert id="insertUserSelective" parameterType="com.zhuolang.starryserver.entity.User" >
+        insert into user_tab
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="user.id != null" >
+                id,
+            </if>
+            <if test="user.phone != null" >
+                phone,
+            </if>
+            <if test="user.password != null" >
+                password,
+            </if>
+            <if test="user.name != null" >
+                name,
+            </if>
+            <if test="user.nickname != null" >
+                nickname,
+            </if>
+            <if test="user.gender != null" >
+                gender,
+            </if>
+            <if test="user.age != null" >
+                age,
+            </if>
+            <if test="user.habit != null" >
+                habit,
+            </if>
+            <if test="user.birthday != null" >
+                birthday,
+            </if>
+            <if test="user.job != null" >
+                job,
+            </if>
+            <if test="user.address != null" >
+                address,
+            </if>
+            <if test="user.weigh != null" >
+                weigh,
+            </if>
+            <if test="user.height != null" >
+                height,
+            </if>
+            <if test="user.xingZuo != null" >
+                xingZuo,
+            </if>
+            <if test="user.signature != null" >
+                signature,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="user.id != null" >
+                #{user.id},
+            </if>
+            <if test="user.phone != null" >
+                #{user.phone},
+            </if>
+            <if test="user.password != null" >
+                #{user.password},
+            </if>
+            <if test="user.name != null" >
+                #{user.name},
+            </if>
+            <if test="user.nickname != null" >
+                #{user.nickname},
+            </if>
+            <if test="user.gender != null" >
+                #{user.gender},
+            </if>
+            <if test="user.age != null" >
+                #{user.age},
+            </if>
+            <if test="user.habit != null" >
+                #{user.habit},
+            </if>
+            <if test="user.birthday != null" >
+                #{user.birthday},
+            </if>
+            <if test="user.job != null" >
+                #{user.job},
+            </if>
+            <if test="user.address != null" >
+                #{user.address},
+            </if>
+            <if test="user.weigh != null" >
+                #{user.weigh},
+            </if>
+            <if test="user.height != null" >
+                #{user.height},
+            </if>
+            <if test="user.xingZuo != null" >
+                #{user.xingZuo},
+            </if>
+            <if test="user.signature != null" >
+                #{user.signature},
+            </if>
+        </trim>
+    </insert>
 </mapper>

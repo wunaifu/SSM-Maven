@@ -3,7 +3,7 @@ package com.zhuolang.starryserver.entity;
 import java.util.Date;
 
 /**
- * Created by wunaifu on 2017/8/8.
+ * Created by wunaifu on 2018/7/28.
  */
 public class User {
     private int id;//自增
@@ -140,26 +140,5 @@ public class User {
 
     public void setSignature(String signature) {
         this.signature = signature;
-    }
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", phone='" + phone + '\'' +
-                ", password='" + password + '\'' +
-                ", nickname='" + nickname + '\'' +
-                ", name='" + name + '\'' +
-                ", gender=" + gender +
-                ", age=" + age +
-                ", habit='" + habit + '\'' +
-                ", birthday=" + birthday +
-                ", job='" + job + '\'' +
-                ", address='" + address + '\'' +
-                ", weigh='" + weigh + '\'' +
-                ", height='" + height + '\'' +
-                ", xingZuo='" + xingZuo + '\'' +
-                ", signature='" + signature + '\'' +
-                '}';
     }
 }
