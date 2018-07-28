@@ -2,16 +2,17 @@ package com.zhuolang.starryserver.controller;
 
 import com.zhuolang.starryserver.entity.User;
 import com.zhuolang.starryserver.service.UserService;
-import com.zhuolang.starryserver.utils.ResultDto;
+import com.zhuolang.starryserver.dto.ResultDto;
+import com.zhuolang.starryserver.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -122,12 +123,12 @@ public class UserController {
         int result = 0;
         try {
             User user = new User();
-            user.setPhone("123");
+            user.setPhone("18219111626");
             user.setPassword("123456");
             user.setName("福");
             user.setGender(1);
             user.setAge(23);
-            user.setBirthday("2018-01-29");
+            user.setBirthday(TimeUtil.dateToStrNoTime(new Date()));//时间工具转换类
             user.setAddress("插入新地址");
 //        int r = userService.updataUser(user);
 //        int r = userService.updateUserByIdSelective(user);
@@ -143,4 +144,5 @@ public class UserController {
         }
 
     }
+
 }

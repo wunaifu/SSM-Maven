@@ -1,4 +1,4 @@
-package com.zhuolang.starryserver.utils;
+package com.zhuolang.starryserver.dto;
 
 import java.util.List;
 

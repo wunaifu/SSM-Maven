@@ -1,4 +1,4 @@
-package com.zhuolang.starryserver.utils;
+package com.zhuolang.starryserver.dto;
 /**
  * Created by wnf on 2018-7-28.
  */
