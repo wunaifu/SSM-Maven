@@ -141,4 +141,25 @@ public class User {
     public void setSignature(String signature) {
         this.signature = signature;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", phone='" + phone + '\'' +
+                ", password='" + password + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", name='" + name + '\'' +
+                ", gender=" + gender +
+                ", age=" + age +
+                ", habit='" + habit + '\'' +
+                ", birthday='" + birthday + '\'' +
+                ", job='" + job + '\'' +
+                ", address='" + address + '\'' +
+                ", weigh='" + weigh + '\'' +
+                ", height='" + height + '\'' +
+                ", xingZuo='" + xingZuo + '\'' +
+                ", signature='" + signature + '\'' +
+                '}';
+    }
 }

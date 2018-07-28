@@ -6,11 +6,13 @@ import com.zhuolang.starryserver.utils.ResultDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 /**
  * Created by wunaifu on 2018/7/28.
@@ -31,50 +33,113 @@ public class UserController {
 
     /**
      * 通过phone查找用户的信息（可用于查看用户信息功能的请求接口）
+     *
      * @param request
      * @param response
      * @return
-     * @throws IOException
-     * 这些参数就是APP那边请求的参数  HttpServletResponse是用来返回数据的，不是APP那边请求的参数，这里暂时用不到
+     * @throws IOException 这些参数就是APP那边请求的参数  HttpServletResponse是用来返回数据的，不是APP那边请求的参数，这里暂时用不到
      */
     @ResponseBody//将返回的数据处理为json
     @RequestMapping(value = "/findUserByPhone")
-    public ResultDto findUserByPhone(HttpServletRequest request, HttpServletResponse response)
-            throws IOException{
+    //@RequestMapping(value = "/findUserByPhone",method = RequestMethod.POST)//可以指定请求方式,如果不指定，默认post，get都可以
+    public ResultDto findUserByPhone(HttpServletRequest request, HttpServletResponse response) {
+        String phone = "";
+        User user;
+        try {
+            //request.getParameter("phone")就是APP端传过来的请求参数
+            phone = request.getParameter("phone");
+            user = userService.findUserByPhone(phone);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultDto(500, "Error Exception===" + e.getClass());
+        }
+        if (user == null) {
+            //ResultDto返回数据的封装类，参数使用规则可自定义
+            //例：
+            // stauts:状态返回码，200：URL访问请求成功，并成功返回数据；500：URL访问请求成功但内部程序出错
+            // msg：信息提示
+            // data：需要的数据
+            return new ResultDto(200, "nodata", null);
+        } else {
+            return new ResultDto(200, "success", user);
+        }
+    }
+
+    /**
+     * @param request
+     * @return
+     * @throws IOException
+     */
+    @ResponseBody//将返回的数据处理为json
+    @RequestMapping(value = "/findUserByPhone1")
+    public User findUserByPhone1(HttpServletRequest request)
+            throws IOException {
 
         //request.getParameter("phone")就是APP端传过来的请求参数
         String phone = request.getParameter("phone");
 
         User user = userService.findUserByPhone(phone);
-        if (user == null) {
-            //ResultDto返回数据的封装类
-            return new ResultDto(200,"没有找到数据",null);
+        return user;
+    }
+
+    /**
+     * @param request
+     * @param response
+     * @return
+     * @throws IOException 这些参数就是APP那边请求的参数  HttpServletResponse是用来返回数据的，不是APP那边请求的参数，这里暂时用不到
+     */
+    @ResponseBody//将返回的数据处理为json
+    @RequestMapping(value = "/findAllUser")
+    public ResultDto findAllUser(HttpServletRequest request, HttpServletResponse response) {
+        List<User> userList;
+        try {
+            userList = userService.findAllUserDESC();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultDto(500, "Error Exception===" + e.getClass());
+        }
+        if (userList != null&&userList.size()>0) {
+            //ResultDto返回数据的封装类，参数使用规则可自定义
+            //例：
+            // stauts:状态返回码，200：URL访问请求成功，并成功返回数据；500：URL访问请求成功但内部程序出错
+            // msg：信息提示
+            // data：需要的数据
+            return new ResultDto(200, "success", userList);
         } else {
-            return new ResultDto(200,"找到数据了",user);
+            return new ResultDto(200, "nodata", null);
         }
     }
 
+    /**
+     * 数据更新例子
+     * @param request
+     * @return
+     * @throws IOException
+     */
     @ResponseBody
     @RequestMapping(value = "/updateUserByIdSelective")
-    public ResultDto updateUserByIdSelective(HttpServletRequest request)
-            throws IOException{
-
-        User user = new User();
-        user.setPhone("123");
-        user.setPassword("123456");
-        user.setName("福");
-        user.setGender(1);
-        user.setAge(23);
-        user.setBirthday("2018-01-29");
-        user.setAddress("插入新地址");
-
+    public ResultDto updateUserByIdSelective(HttpServletRequest request) {
+        int result = 0;
+        try {
+            User user = new User();
+            user.setPhone("123");
+            user.setPassword("123456");
+            user.setName("福");
+            user.setGender(1);
+            user.setAge(23);
+            user.setBirthday("2018-01-29");
+            user.setAddress("插入新地址");
 //        int r = userService.updataUser(user);
 //        int r = userService.updateUserByIdSelective(user);
-        int r = userService.insertUserSelective(user);
-        if (r == 1) {
-            return new ResultDto(200,"更新成功");
+            result = userService.insertUserSelective(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResultDto(500, "Error Exception===" + e.getClass());
+        }
+        if (result == 1) {
+            return ResultDto.ok();
         } else {
-            return new ResultDto(200,"更新失败");
+            return ResultDto.failure();
         }
 
     }

@@ -42,6 +42,12 @@ public class ResultDto {
         return new ResultDto(null);
     }
 
+    public static ResultDto error(){
+        return new ResultDto(500, "error");
+    }
+    public static ResultDto failure(){
+        return new ResultDto(500, "failure");
+    }
 
     public Integer getStatus() {
         return status;
