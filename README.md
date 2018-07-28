@@ -1,6 +1,8 @@
 # SSM-Maven
-基于maven的spring、springMVC、Mybatis项目
-推荐插件：方便mapper文件间跳转及sql语句编写
+* 基于maven的spring、springMVC、Mybatis项目
+* 推荐url接口测试软件：postman.exe
+![](images/微信截图_20180728143358.png)
+* 推荐插件：方便mapper文件间跳转及sql语句编写
 
 ![](images/微信截图_20180728141651.png)
 
