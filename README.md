@@ -6,10 +6,12 @@
 
 ![](images/微信截图_20180728141651.png)
 
+## IntelliJ IDEA中安装、配置以及使用Maven
+链接：https://blog.csdn.net/ck4438707/article/details/53377413（或自行百度学习）
 ##IntelliJ IDEA中安装、配置以及使用Maven
 链接：https://blog.csdn.net/ck4438707/article/details/53377413  （或自行百度学习）
 
-##Maven项目导入，按照图片，next到finish，项目导入成功
+## Maven项目导入，按照图片，next到finish，项目导入成功
 （项目导入成功后检查下项目中IDEA的Maven仓库路径）
 
 ![](images/微信截图_20180728113345.png)
@@ -25,7 +27,7 @@
 ![](images/微信截图_20180728113805.png)
 
 （项目导入成功后检查下项目中IDEA的Maven仓库路径）
-###配置Tomcat
+### 配置Tomcat
 
 ![](images/微信截图_20180728141046.png)
 
@@ -38,7 +40,7 @@
 ![](images/微信截图_20180728141317.png)
 
 
-##编码
+## 编码
 ### 请求时数据走向
 * 1、URL请求
 * 2、controller处理请求，获取请求参数，调用service接口，传参数到业务层。
@@ -46,14 +48,14 @@ controller一般只获取请求参数，返回结果，不进行复杂的数据�
 * 3、service调用dao层接口，读写数据库数据，进行复杂的数据处理，返回结果给controller层
 * 4、dao层读写数据库数据，返回读写结果
 
-###例：
+### 例：
 请求链接：http://localhost:8080/user/findUserByPhone?phone=1
 访问后数据请求走向如下图，数据处理后controller返回处理结果（处理成json数据）
 ![](images/微信截图_20180728120121.png)
 
 ![](images/微信截图_20180728134902.png)
 
-###文件
+### 文件
 * main：后台项目文件
 * test：测试main里面dao和service里面的方法，放置测试类
 * entity:实体类
