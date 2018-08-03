@@ -11,6 +11,12 @@ import java.util.UUID;
 
 public class FileUploadUtil {
 
+    /**
+     * 上传单个文件例子，返回上传后的文件名，上传失败则返回null
+     * @param file
+     * @param request
+     * @return
+     */
     public static String uploadFile(MultipartFile file,HttpServletRequest request){
         String fileName = "";
         String filePath = "";
@@ -36,6 +42,13 @@ public class FileUploadUtil {
         return fileName;
     }
 
+    /**
+     * 上传多个文件例子，返回上传后的文件名列表，上传失败则返回null
+     * 单个上传错误还没处理，待更新
+     * @param file
+     * @param request
+     * @return
+     */
     public static List<String> uploadFileList(MultipartFile file[],HttpServletRequest request){
         List<String> stringList = new ArrayList<>();
         try {

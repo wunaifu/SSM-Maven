@@ -161,7 +161,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/uploadFile")
     public ResultDto uploadFile(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request) {
-        //单个文件上传
+        //单个文件上传，返回文件上传后的名字
         String resultStr = FileUploadUtil.uploadFile(file,request);
         if (resultStr != null) {
             return new ResultDto(200, "success", resultStr);
@@ -180,7 +180,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping("/uploadFileList")
     public ResultDto uploadFileList(@RequestParam(value = "file") MultipartFile file[], HttpServletRequest request) {
-        //多个文件上传
+        //多个文件上传，返回文件上传后的名字
         List<String> stringList = FileUploadUtil.uploadFileList(file, request);
         if (stringList != null) {
             return new ResultDto(200, "success", stringList);
