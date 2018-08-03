@@ -87,3 +87,35 @@ controller一般只获取请求参数，返回结果，不进行复杂的数据�
 ![](images/SpringMVC结构图.png)
 ![](images/myBatis原理图.jpg)
 
+## 学习要点
+#### 1、Java基础
+
+Java基本语法、面向对象相关的基本概念与思想，常用String类的api，
+异常处理，IO基础，容器，多线程，内存管理与垃圾回收， 
+知道几种常见的 Java 设计模式等，建议可以找些网上Java面试宝典之类的文章，
+熟悉下面试常遇到的一些Java知识点，一般都是Java基础。
+
+#### 2、框架基础
+
+spring、springMVC、mybatis、hibernate（springboot）
+能使用以下技术搭建项目
+* springMVC + spring + mybatis
+* springMVC + spring + hibernate
+* springboot + mybatis
+
+了解以上框架原理，其次还需要掌握HTML、CSS、JQurey、ajax、bootstrap、MySQL
+
+#### 3、Android基础
+* Android基础UI控件。Button、TextView、EditText、CheckBox、RadioButton、
+ImageView、Spinner、ProgressBar、SeekBar、RecycleView、ScrollView、
+LinearLayout、RelativeLayout等
+* Android四大组件的理解与熟练掌握。
+Activity的四种启动模式，Fragment的生命周期、Fragment与Activity之间的关系，BroadcastReceiver、ContentProvider、Service的使用场景与具体用法，更细节点的如 BroadcastReceiver 的广播类型与不同的注册方式的区别等都应该关注并理解到位。
+* 数据存储。Sqlite与SQL语句得掌握吧，数据库虽然说在客户端开发上只有特定的业务或者场景才用得到，
+但是SQL语句这是基础，基本的操作sqlite相关的api也必须要掌握。
+* 了解常见的数据格式与解析方法，虽然目前常用的数据格式就是json，解析库也有很多，如Gson等。
+
+
+
+
+
