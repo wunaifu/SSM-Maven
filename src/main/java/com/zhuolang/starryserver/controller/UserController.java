@@ -3,17 +3,23 @@ package com.zhuolang.starryserver.controller;
 import com.zhuolang.starryserver.entity.User;
 import com.zhuolang.starryserver.service.UserService;
 import com.zhuolang.starryserver.dto.ResultDto;
+import com.zhuolang.starryserver.utils.FileUploadUtil;
 import com.zhuolang.starryserver.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by wunaifu on 2018/7/28.
@@ -99,7 +105,7 @@ public class UserController {
             e.printStackTrace();
             return new ResultDto(500, "Error Exception===" + e.getClass());
         }
-        if (userList != null&&userList.size()>0) {
+        if (userList != null && userList.size() > 0) {
             //ResultDto返回数据的封装类，参数使用规则可自定义
             //例：
             // stauts:状态返回码，200：URL访问请求成功，并成功返回数据；500：URL访问请求成功但内部程序出错
@@ -113,6 +119,7 @@ public class UserController {
 
     /**
      * 数据更新例子
+     *
      * @param request
      * @return
      * @throws IOException
@@ -143,6 +150,43 @@ public class UserController {
             return ResultDto.failure();
         }
 
+    }
+
+    /**
+     * 上传文件例子
+     *
+     * @param file
+     * @param request
+     */
+    @ResponseBody
+    @RequestMapping(value = "/uploadFile")
+    public ResultDto uploadFile(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request) {
+        //单个文件上传
+        String resultStr = FileUploadUtil.uploadFile(file,request);
+        if (resultStr != null) {
+            return new ResultDto(200, "success", resultStr);
+        } else {
+            return ResultDto.error();
+        }
+    }
+
+
+    /**
+     * 上传多个文件例子
+     *
+     * @param request
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/uploadFileList")
+    public ResultDto uploadFileList(@RequestParam(value = "file") MultipartFile file[], HttpServletRequest request) {
+        //多个文件上传
+        List<String> stringList = FileUploadUtil.uploadFileList(file, request);
+        if (stringList != null) {
+            return new ResultDto(200, "success", stringList);
+        } else {
+            return ResultDto.error();
+        }
     }
 
 }
