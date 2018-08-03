@@ -103,7 +103,9 @@ spring、springMVC、mybatis、hibernate（springboot）
 * springMVC + spring + hibernate
 * springboot + mybatis
 
-了解以上框架原理，其次还需要掌握HTML、CSS、JQurey、ajax、bootstrap、MySQL
+### 了解以上框架原理
+其次还需要掌握HTML、CSS、JQurey、ajax、bootstrap、MySQL、
+http、socket、json、restful
 
 #### 3、Android基础
 * Android基础UI控件。Button、TextView、EditText、CheckBox、RadioButton、
