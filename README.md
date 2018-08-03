@@ -2,7 +2,9 @@
 
 ### idea激活
 去 http://idea.lanyus.com/ 获取验证码，复制
+
 ![](images/微信截图_20180803150359.png)
+
 关闭软件，修改host文件 C:\Windows\System32\drivers\etc
 在host中加入 0.0.0.0 account.jetbrains.com
 激活成功
