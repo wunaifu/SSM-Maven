@@ -1,6 +1,7 @@
 package com.zhuolang.starryserver.controller;
 
 import com.zhuolang.starryserver.entity.User;
+import com.zhuolang.starryserver.handle.BaseExceptionHandleAction;
 import com.zhuolang.starryserver.service.UserService;
 import com.zhuolang.starryserver.dto.ResultDto;
 import com.zhuolang.starryserver.utils.FileUploadUtil;
@@ -14,12 +15,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by wunaifu on 2018/7/28.
@@ -28,8 +26,8 @@ import java.util.UUID;
 //    就是网络请求时的地址，即访问controller中某方法的网络地址URL
 //    例如：http://localhost:8080/user/allUser --》就访问了findAllUserDESC（）方法
 @Controller
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/user")//Controller类继承BaseExceptionHandleAction这个类即可在产生异常时返回数据获取失败的异常类信息
+public class UserController extends BaseExceptionHandleAction {
 
     //这里写的每个方法都要注释好是干什么的，有复杂的逻辑处理关系的也要注释好，便于别人读懂你的代码
     //PS:controller一般只处理获取数据，将数据传到service业务层，不做复杂的数据处理，复杂的数据处理交给service业务层
@@ -50,16 +48,8 @@ public class UserController {
     @RequestMapping(value = "/findUserByPhone")
     //@RequestMapping(value = "/findUserByPhone",method = RequestMethod.POST)//可以指定请求方式,如果不指定，默认post，get都可以
     public ResultDto findUserByPhone(HttpServletRequest request, HttpServletResponse response) {
-        String phone = "";
-        User user;
-        try {
-            //request.getParameter("phone")就是APP端传过来的请求参数
-            phone = request.getParameter("phone");
-            user = userService.findUserByPhone(phone);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultDto(500, "Error Exception===" + e.getClass());
-        }
+        String phone = request.getParameter("phone");
+        User user = userService.findUserByPhone(phone);
         if (user == null) {
             //ResultDto返回数据的封装类，参数使用规则可自定义
             //例：
@@ -79,8 +69,7 @@ public class UserController {
      */
     @ResponseBody//将返回的数据处理为json
     @RequestMapping(value = "/findUserByPhone1")
-    public User findUserByPhone1(HttpServletRequest request)
-            throws IOException {
+    public User findUserByPhone1(HttpServletRequest request) {
 
         //request.getParameter("phone")就是APP端传过来的请求参数
         String phone = request.getParameter("phone");
@@ -98,13 +87,9 @@ public class UserController {
     @ResponseBody//将返回的数据处理为json
     @RequestMapping(value = "/findAllUser")
     public ResultDto findAllUser(HttpServletRequest request, HttpServletResponse response) {
-        List<User> userList;
-        try {
-            userList = userService.findAllUserDESC();
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultDto(500, "Error Exception===" + e.getClass());
-        }
+
+        List<User> userList = userService.findAllUserDESC();
+
         if (userList != null && userList.size() > 0) {
             //ResultDto返回数据的封装类，参数使用规则可自定义
             //例：
@@ -128,22 +113,19 @@ public class UserController {
     @RequestMapping(value = "/updateUserByIdSelective")
     public ResultDto updateUserByIdSelective(HttpServletRequest request) {
         int result = 0;
-        try {
-            User user = new User();
-            user.setPhone("18219111626");
-            user.setPassword("123456");
-            user.setName("福");
-            user.setGender(1);
-            user.setAge(23);
-            user.setBirthday(TimeUtil.dateToStrNoTime(new Date()));//时间工具转换类
-            user.setAddress("插入新地址");
+
+        User user = new User();
+        user.setPhone("18219111626");
+        user.setPassword("123456");
+        user.setName("福");
+        user.setGender(1);
+        user.setAge(23);
+        user.setBirthday(TimeUtil.dateToStrNoTime(new Date()));//时间工具转换类
+        user.setAddress("插入新地址");
 //        int r = userService.updataUser(user);
 //        int r = userService.updateUserByIdSelective(user);
-            result = userService.insertUserSelective(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return new ResultDto(500, "Error Exception===" + e.getClass());
-        }
+        result = userService.insertUserSelective(user);
+
         if (result == 1) {
             return ResultDto.ok();
         } else {
@@ -162,7 +144,7 @@ public class UserController {
     @RequestMapping(value = "/uploadFile")
     public ResultDto uploadFile(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request) {
         //单个文件上传，返回文件上传后的名字
-        String resultStr = FileUploadUtil.uploadFile(file,request);
+        String resultStr = FileUploadUtil.uploadFile(file, request);
         if (resultStr != null) {
             return new ResultDto(200, "success", resultStr);
         } else {
