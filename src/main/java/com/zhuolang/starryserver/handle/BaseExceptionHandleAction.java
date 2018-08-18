@@ -31,6 +31,7 @@ public class BaseExceptionHandleAction {
     @ResponseBody
     public ResultDto handleAndReturnData(Exception ex) {
         System.out.println("很好奇有没有执行到这里**handleAndReturnData************************************************************");
+        ex.printStackTrace();
         return new ResultDto(500, "Error Exception===" + ex.getClass());
     }
 

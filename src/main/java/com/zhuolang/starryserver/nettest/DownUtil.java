@@ -1,6 +1,7 @@
 package com.zhuolang.starryserver.nettest;
 
 import javax.print.DocFlavor;
+import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
@@ -28,7 +29,7 @@ public class DownUtil {
         threads = new DownThread[threadNum];
     }
 
-    public void download() throws Exception{
+    public int download() throws Exception{
         URL url = new URL(path);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setConnectTimeout(5 * 1000);
@@ -65,6 +66,8 @@ public class DownUtil {
             threads[i].start();
 
         }
+        System.out.println("文件大小：" + fileSize);
+        return fileSize;
     }
 
     // 获取下载的完成百分比
@@ -125,7 +128,10 @@ public class DownUtil {
                 currentPart.close();
                 inStream.close();
 
-            } catch (Exception e) {
+            }catch (FileNotFoundException e){
+                System.out.println("没有找到资源文件，请检查文件链接");
+                e.printStackTrace();
+            }catch (Exception e) {
                 e.printStackTrace();
             }
         }

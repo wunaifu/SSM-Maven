@@ -1,5 +1,6 @@
 package com.zhuolang.starryserver.nettest;
 
+import java.io.FileNotFoundException;
 import java.net.InetAddress;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -57,7 +58,7 @@ public class Main {
             //   疯狂java讲义
 
             System.out.println("****************下载*****************");
-            String fileUrl = "http://localhost:8081/starry/img/ad48a749-ec47-4eec-a5fc-6d74166368bd.png";
+            String fileUrl = "http://localhost:8081/starry/img/e69ce244-fc71-499a-b276-798930fd8c38.zip";
             String fileName = UUID.randomUUID() + fileUrl.substring(fileUrl.lastIndexOf("."));
             // 初始化DownUtil对象
             final DownUtil downUtil = new DownUtil(fileUrl, fileName, 1);
@@ -66,28 +67,36 @@ public class Main {
                 public void run() {
                     try {
                         // 开始下载
-                        downUtil.download();
-                        double progress = downUtil.getCompleteRate();
-                        System.out.println("进度条：" + String.format("%.4f", progress));
-                        while (progress < 1) {
-                            // 每隔0.1秒查询一次任务的完成进度
-                            // GUI程序中可根据该进度来绘制进度条
-                            System.out.println("已完成：" + downUtil.getCompleteRate());
-                            try {
-                                Thread.sleep(100);
-                            } catch (Exception e) {
-                                e.printStackTrace();
-                            }
-                            progress = downUtil.getCompleteRate();
+                        if (downUtil.download() <= 0) {
+                            System.out.println("文件大小小于0，找不到资源");
+                        } else {
+                            double progress = downUtil.getCompleteRate();
                             System.out.println("进度条：" + String.format("%.4f", progress));
+                            while (progress < 1) {
+                                // 每隔0.1秒查询一次任务的完成进度
+                                // GUI程序中可根据该进度来绘制进度条
+                                System.out.println("已完成：" + downUtil.getCompleteRate());
+                                try {
+                                    Thread.sleep(100);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                progress = downUtil.getCompleteRate();
+                                System.out.println("进度条：" + String.format("%.4f", progress));
+                                if (progress <= 0) {
+                                    System.out.println("进度小于0，网络差，找不到资源");
+                                    break;
+                                }
+                            }
                         }
+
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
                 }
             }).start();
 
-        } catch (Exception e) {
+        }  catch (Exception e) {
             e.printStackTrace();
         }
     }
