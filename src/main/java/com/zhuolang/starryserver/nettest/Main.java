@@ -3,16 +3,17 @@ package com.zhuolang.starryserver.nettest;
 import java.net.InetAddress;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
+import java.util.UUID;
 
 public class Main {
 
     public static void main(String[] args) {
         try {
             InetAddress ip = InetAddress.getByName("www.baidu.com");
-            System.out.println("是否可达："+ip.isReachable(2000));
+            System.out.println("是否可达：" + ip.isReachable(2000));
             System.out.println(ip.getHostAddress());
             InetAddress local = InetAddress.getByAddress(new byte[]{127, 0, 0, 1});
-            System.out.println("本机是否可达:"+local.isReachable(5000));
+            System.out.println("本机是否可达:" + local.isReachable(5000));
             System.out.println(local.getCanonicalHostName());
             //获取InetAddress实例对应的全限定域名
             System.out.println(local.getHostAddress());
@@ -56,23 +57,32 @@ public class Main {
             //   疯狂java讲义
 
             System.out.println("****************下载*****************");
+            String fileUrl = "http://localhost:8081/starry/img/ad48a749-ec47-4eec-a5fc-6d74166368bd.png";
+            String fileName = UUID.randomUUID() + fileUrl.substring(fileUrl.lastIndexOf("."));
             // 初始化DownUtil对象
-            final DownUtil downUtil = new DownUtil("http://d.hiphotos.baidu.com/zhidao/pic/item/fc1f4134970a304e168ce85cd7c8a786c8175ced.jpg",
-                    "ios.png", 1);
-            // 开始下载
-            downUtil.download();
+            final DownUtil downUtil = new DownUtil(fileUrl, fileName, 1);
             new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    while (downUtil.getCompleteRate() < 1) {
-                        // 每隔0.1秒查询一次任务的完成进度
-                        // GUI程序中可根据该进度来绘制进度条
-                        System.out.println("已完成："+downUtil.getCompleteRate());
-                        try {
-                            Thread.sleep(100);
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                    try {
+                        // 开始下载
+                        downUtil.download();
+                        double progress = downUtil.getCompleteRate();
+                        System.out.println("进度条：" + String.format("%.4f", progress));
+                        while (progress < 1) {
+                            // 每隔0.1秒查询一次任务的完成进度
+                            // GUI程序中可根据该进度来绘制进度条
+                            System.out.println("已完成：" + downUtil.getCompleteRate());
+                            try {
+                                Thread.sleep(100);
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
+                            progress = downUtil.getCompleteRate();
+                            System.out.println("进度条：" + String.format("%.4f", progress));
                         }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
                 }
             }).start();

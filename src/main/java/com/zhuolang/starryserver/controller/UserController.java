@@ -143,8 +143,10 @@ public class UserController extends BaseExceptionHandleAction {
     @ResponseBody
     @RequestMapping(value = "/uploadFile")
     public ResultDto uploadFile(@RequestParam(value = "file") MultipartFile file, HttpServletRequest request) {
+        System.out.println("====================前=====================");
         //单个文件上传，返回文件上传后的名字
         String resultStr = FileUploadUtil.uploadFile(file, request);
+        System.out.println("=====================后====================");
         if (resultStr != null) {
             return new ResultDto(200, "success", resultStr);
         } else {

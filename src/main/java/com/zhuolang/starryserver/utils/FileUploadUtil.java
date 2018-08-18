@@ -35,7 +35,10 @@ public class FileUploadUtil {
 
                 // 执行更新图片在服务器的地址
             }
-        } catch (Exception e) {//进行错误处理
+        }catch (org.springframework.web.multipart.MaxUploadSizeExceededException e){
+            e.printStackTrace();
+            return null;
+        }catch (Exception e) {//进行错误处理
             e.printStackTrace();
             return null;
         }
