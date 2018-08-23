@@ -59,6 +59,7 @@ public class StringTest {
                         "以上的.GHO文件的是GHOST封装系统，PE里的U大师智能装机PE版软件可以直" +
                         "接支持还原安装。如果解压后没有大于600M以上的GHO文件则是原版ISO格式" +
                         "系统，要用安装原版XP和WIN7的方法来安装如遇卡住可能会是网速的问题"
+                ,"你们好啊，系统，你这是原版的吗？"
         };
         Pattern p = Pattern.compile("(系统)|(原版)");
         Matcher matcher1 = null;
@@ -68,7 +69,8 @@ public class StringTest {
             } else {
                 matcher1.reset(msgs[i]);
             }
-            System.out.println(matcher1.replaceAll("**"));
+            String s = matcher1.replaceAll("**");
+            System.out.println(s);
         }
     }
 }

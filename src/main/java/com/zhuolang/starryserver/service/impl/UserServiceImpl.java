@@ -35,6 +35,11 @@ public class UserServiceImpl implements UserService{
         return userDao.addUserByPhonePsw(phone,password);
     }
 
+    @Override
+    public int addUser(User user) {
+        return userDao.addUser(user);
+    }
+
     /**
      * 通过phone删除User
      * @param phone

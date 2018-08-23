@@ -18,6 +18,13 @@
         VALUES (#{phone},#{password});
     </insert>
 
+    <!--插入成功后，传参的User对象带有主键id-->
+    <insert id="addUser" useGeneratedKeys="true" keyProperty="user.id" parameterType="com.zhuolang.starryserver.entity.User">
+        <!--当出现主键冲突时(即重复时)，会报错;不想让程序报错，加入ignore-->
+        INSERT ignore INTO user_tab(phone,password)
+        VALUES (#{user.phone},#{user.password});
+    </insert>
+
     <!--通过phone删除User-->
     <delete id="deleteUserByPhone" parameterType="String">
         <!--具体SQL语句-->

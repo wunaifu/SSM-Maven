@@ -20,6 +20,8 @@ public interface UserService {
      */
     int addUserByPhonePsw(String phone, String password);
 
+    int addUser(User user);
+
     /**
      * 通过phone删除User
      *

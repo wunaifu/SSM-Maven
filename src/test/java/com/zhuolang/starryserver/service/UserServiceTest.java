@@ -1,7 +1,9 @@
 package com.zhuolang.starryserver.service;
 
+import com.zhuolang.starryserver.entity.User;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -13,8 +15,22 @@ import static org.junit.Assert.*;
         "classpath:spring/spring-service.xml"})
 public class UserServiceTest {
 
+    @Autowired
+    UserService userService;
+
     @Test
     public void addUserByPhonePsw() {
+        System.out.println(userService.addUserByPhonePsw("18219111627","123456"));
+    }
+
+    @Test
+    public void addUser() {
+        User user = new User();
+        user.setPhone("18219111619");
+        user.setPassword("123456");
+        System.out.println(userService.addUser(user));
+//        user.getId();
+        System.out.println(user);
     }
 
     @Test

@@ -19,6 +19,8 @@ public interface UserDao {//添加UserDao的test时，选中类名UserDao，右�
      */
     int addUserByPhonePsw(@Param("phone") String phone,@Param("password") String password);
 
+    int addUser(@Param("user") User user);
+
     /**
      * 通过phone删除User
      * @param phone
