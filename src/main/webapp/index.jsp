@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8"%>
 <html>
 <body>
-<h2>Hello World!</h2>
+<h3><a href="user_list">1、EasyUI例子 - EasyUI创建CRUD应用</a></h3>
 <h2>网站开发页面</h2>
 <h2>尽情装逼吧</h2>
 <h2>测试多文件上传</h2>

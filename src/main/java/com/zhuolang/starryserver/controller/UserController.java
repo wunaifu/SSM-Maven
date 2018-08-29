@@ -8,6 +8,7 @@ import com.zhuolang.starryserver.utils.FileUploadUtil;
 import com.zhuolang.starryserver.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -171,4 +172,81 @@ public class UserController extends BaseExceptionHandleAction {
         }
     }
 
+
+    /**
+     * 用户列表
+     * @param request
+     * @param response
+     * @return
+     */
+    @ResponseBody//将返回的数据处理为json
+    @RequestMapping(value = "/list")
+    public List<User> userList(HttpServletRequest request, HttpServletResponse response) {
+
+        List<User> userList = userService.findAllUserDESC();
+
+        return userList;
+    }
+
+    /**
+     * 添加用户
+     * @param request
+     * @param response
+     * @return
+     */
+    @ResponseBody//将返回的数据处理为json
+    @RequestMapping(value = "/save")
+    public String userSave(HttpServletRequest request, HttpServletResponse response) {
+
+        User user = new User();
+        user.setPhone(request.getParameter("phone"));
+        user.setPassword(request.getParameter("password"));
+        user.setName(request.getParameter("name"));
+        user.setNickname(request.getParameter("nickname"));
+        int result = userService.insertUserSelective(user);
+        if (result == 1) {
+            return "success";
+        }
+        return "error";
+    }
+
+    /**
+     * 更新用户
+     * @param request
+     * @param response
+     * @return
+     */
+    @ResponseBody//将返回的数据处理为json
+    @RequestMapping(value = "/update/{id}")
+    public String userUpdate(@PathVariable("id")int id, HttpServletRequest request, HttpServletResponse response) {
+
+        User user = new User();
+        user.setId(id);
+        user.setPhone(request.getParameter("phone"));
+        user.setPassword(request.getParameter("password"));
+        user.setName(request.getParameter("name"));
+        user.setNickname(request.getParameter("nickname"));
+        int result = userService.updateUserByIdSelective(user);
+        if (result == 1) {
+            return "success";
+        }
+        return "error";
+    }
+    /**
+     * 删除用户
+     * @param request
+     * @param response
+     * @return
+     */
+    @ResponseBody//将返回的数据处理为json
+    @RequestMapping(value = "/del")
+    public ResultDto userDel(String phone,HttpServletRequest request, HttpServletResponse response) {
+        //String phone = request.getParameter("phone");
+        System.out.println("****************************"+phone);
+        int result = userService.deleteUserByPhone(phone);
+        if (result == 1) {
+            return ResultDto.ok();
+        }
+        return ResultDto.error();
+    }
 }
