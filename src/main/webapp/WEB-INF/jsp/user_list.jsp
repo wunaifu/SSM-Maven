@@ -15,9 +15,9 @@
     <meta name="description" content="easyui help you build your web page easily!">
     <title>jQuery EasyUI CRUD Demo</title>
 
-    <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.5.5.7/themes/default/easyui.css">
-    <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.5.5.7/themes/icon.css">
-    <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.5.5.7/demo/demo.css">
+    <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.6.2/themes/default/easyui.css">
+    <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.6.2/themes/icon.css">
+    <link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.6.2/demo/demo.css">
     <style type="text/css">
         #fm{
             margin:0;
@@ -39,8 +39,8 @@
             width:80px;
         }
     </style>
-    <script type="text/javascript" src="js/jquery-easyui-1.5.5.7/jquery.min.js"></script>
-    <script type="text/javascript" src="js/jquery-easyui-1.5.5.7/jquery.easyui.min.js"></script>
+    <script type="text/javascript" src="js/jquery-easyui-1.6.2/jquery.min.js"></script>
+    <script type="text/javascript" src="js/jquery-easyui-1.6.2/jquery.easyui.min.js"></script>
 
 </head>
 <body>

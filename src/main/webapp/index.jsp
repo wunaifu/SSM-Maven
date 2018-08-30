@@ -2,6 +2,8 @@
 <html>
 <body>
 <h3><a href="user_list">1、EasyUI例子 - EasyUI创建CRUD应用</a></h3>
+<h3><a href="user_list_datagrid">2、EasyUI例子 - EasyUI 创建 CRUD 数据网格（DataGrid）</a></h3>
+<h3><a href="index_easyui">EasyUI例子整合</a></h3>
 <h2>网站开发页面</h2>
 <h2>尽情装逼吧</h2>
 <h2>测试多文件上传</h2>

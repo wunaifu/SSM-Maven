@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- namespace为对应的dao类路径 -->
+<mapper namespace="com.zhuolang.starryserver.dao.UsersDao">
+    <!--目的:为dao接口方法提供sql语句配置
+    即针对dao接口中的方法编写我们的sql语句-->
+
+    <!--id对应dao的方法名，如果是多参数parameterType不用给，但需要在dao方法的参数前加上@Param("killTime")
+            例如：int reduceNumber(@Param("seckillId") long seckillId, @Param("killTime") Date killTime);-->
+    <!--注意：增删改查对应相应的标签，更新操作对应update标签，插入对应insert，查找对应select，删除对应delete-->
+
+    <!--通过phone删除User-->
+    <delete id="deleteUsersByPhone" parameterType="String">
+        <!--具体SQL语句-->
+        DELETE FROM users_tab
+        WHERE phone=#{phone};
+    </delete>
+
+    <delete id="deleteUsersById" parameterType="int">
+        <!--具体SQL语句-->
+        DELETE FROM users_tab
+        WHERE id=#{id};
+    </delete>
+
+
+    <!--查找所有User，并按年龄降序排序好-->
+    <select id="findAllUsers" resultType="com.zhuolang.starryserver.entity.Users">
+        SELECT *
+        FROM users_tab
+        ORDER BY id,phone DESC
+    </select>
+
+    <!--根据id更新不为空的字段数据-->
+    <update id="updateUsersByIdSelective">
+        update users_tab
+        <set>
+            <if test="user.phone != null">
+                phone=#{user.phone},
+            </if>
+            <if test="user.firstname != null">
+                firstname=#{user.firstname},
+            </if>
+            <if test="user.lastname != null">
+                lastname=#{user.lastname},
+            </if>
+            <if test="user.email != null">
+                email=#{user.email},
+            </if>
+
+        </set>
+        WHERE id=#{user.id}
+    </update>
+
+    <insert id="insertUsersSelective" parameterType="com.zhuolang.starryserver.entity.Users" >
+        insert into users_tab
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="user.id != null" >
+                id,
+            </if>
+            <if test="user.phone != null" >
+                phone,
+            </if>
+            <if test="user.email != null" >
+                email,
+            </if>
+            <if test="user.lastname != null" >
+                lastname,
+            </if>
+            <if test="user.firstname != null" >
+                firstname,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="user.id != null" >
+                #{user.id},
+            </if>
+            <if test="user.phone != null" >
+                #{user.phone},
+            </if>
+            <if test="user.email != null" >
+                #{user.email},
+            </if>
+            <if test="user.lastname != null" >
+                #{user.lastname},
+            </if>
+            <if test="user.firstname != null" >
+                #{user.firstname},
+            </if>
+        </trim>
+    </insert>
+</mapper>
