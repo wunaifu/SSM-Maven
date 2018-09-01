@@ -39,9 +39,11 @@
         <li>
             <span>数据表格DataGrid</span>
             <ul>
+                <li data-options="attributes:{'url':'datagrid_user_list'}">数据表格</li>
                 <li data-options="attributes:{'url':'datagrid_basic'}">基础数据表格</li>
                 <li data-options="attributes:{'url':'datagrid_pagination'}">数据表格的客户端分页</li>
                 <li data-options="attributes:{'url':'treegrid_pagination'}">树表格的客户端分页</li>
+                <li data-options="attributes:{'url':'datagrid_row_edit'}">数据表格的行编辑</li>
             </ul>
         </li>
     </ul>

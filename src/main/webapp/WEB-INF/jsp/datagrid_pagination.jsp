@@ -22,10 +22,10 @@
 <p>This sample shows how to implement client side pagination in DataGrid.</p>
 <div style="margin:20px 0;"></div>
 
-<table id="dg" title="Client Side Pagination" style="width:100%;height: auto" data-options="
+<table id="dg" title="Client Side Pagination" style="width:100%;height:600px;" data-options="
 				rownumbers:true,
 				singleSelect:false,
-				autoRowHeight:false,
+				autoRowHeight:true,
 				pagination:true,
 				pageSize:10">
     <thead>
