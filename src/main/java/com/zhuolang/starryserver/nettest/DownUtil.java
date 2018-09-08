@@ -7,6 +7,9 @@ import java.io.RandomAccessFile;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
 
 public class DownUtil {
 
@@ -137,7 +140,53 @@ public class DownUtil {
         }
     }
 
+    public static void main(String[] args) {
+        System.out.println("****************下载*****************");
+        List<String> stringList = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            stringList.add("1821911162" + i);
+        }
+        for (int i = 0; i < stringList.size(); i++) {
+            String fileUrl = "http://qr.topscan.com/api.php?text="+stringList.get(i)+".png";
+            String fileName = stringList.get(i)+ fileUrl.substring(fileUrl.lastIndexOf("."));
+            // 初始化DownUtil对象
+            DownUtil downUtil = new DownUtil(fileUrl, fileName, 1);
+//            new Thread(new Runnable() {
+//                @Override
+//                public void run() {
+                    try {
+                        // 开始下载
+                        if (downUtil.download() <= 0) {
+                            System.out.println("文件大小小于0，找不到资源");
+                        } else {
+                            double progress = downUtil.getCompleteRate();
+                            System.out.println("进度条：" + String.format("%.4f", progress));
+                            while (progress < 1) {
+                                // 每隔0.1秒查询一次任务的完成进度
+                                // GUI程序中可根据该进度来绘制进度条
+                                System.out.println("已完成：" + downUtil.getCompleteRate());
+                                try {
+                                    Thread.sleep(100);
+                                } catch (Exception e) {
+                                    e.printStackTrace();
+                                }
+                                progress = downUtil.getCompleteRate();
+                                System.out.println("进度条：" + String.format("%.4f", progress));
+                                if (progress <= 0) {
+                                    System.out.println("进度小于0，网络差，找不到资源");
+                                    break;
+                                }
+                            }
+                        }
 
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+//                }
+//            }).start();
+        }
+
+    }
 
 }
 
