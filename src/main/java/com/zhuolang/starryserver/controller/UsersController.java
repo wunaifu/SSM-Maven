@@ -9,18 +9,18 @@ import com.zhuolang.starryserver.service.UsersService;
 import com.zhuolang.starryserver.utils.FileUploadUtil;
 import com.zhuolang.starryserver.utils.TimeUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by wunaifu on 2018/7/28.
@@ -31,6 +31,9 @@ import java.util.List;
 @Controller
 @RequestMapping("/users")//Controller类继承BaseExceptionHandleAction这个类即可在产生异常时返回数据获取失败的异常类信息
 public class UsersController extends BaseExceptionHandleAction {
+
+    @Value("${IMAGE_SERVER_URL}")
+    private String imageUrl;
 
     //这里写的每个方法都要注释好是干什么的，有复杂的逻辑处理关系的也要注释好，便于别人读懂你的代码
     //PS:controller一般只处理获取数据，将数据传到service业务层，不做复杂的数据处理，复杂的数据处理交给service业务层
@@ -137,5 +140,43 @@ public class UsersController extends BaseExceptionHandleAction {
             return ResultDto.ok();
         }
         return ResultDto.error();
+    }
+
+    /**
+     * 上传文件例子
+     *
+     * @param file
+     * @param request
+     */
+    @ResponseBody
+    @RequestMapping(value = "/pic/upload")
+    public Map uploadFile(MultipartFile file, HttpServletRequest request) {
+        System.out.println("进入上传文件了。。。。。。");
+        //单个文件上传，返回文件上传后的名字
+        try {
+            //接收上传的文件
+            //取扩展名
+            String resultStr = FileUploadUtil.uploadFile(file, request);
+            System.out.println(imageUrl+resultStr);
+            //响应上传图片的url
+            Map result = new HashMap<>();
+            result.put("error", 0);
+            result.put("url", imageUrl+resultStr);
+            return result;
+        } catch (Exception e) {
+            e.printStackTrace();
+            Map result = new HashMap<>();
+            result.put("error", 1);
+            result.put("message", "图片上传失败");
+            return result;
+        }
+    }
+
+    @RequestMapping(value="/item/save", method=RequestMethod.POST)
+    @ResponseBody
+    public String addItem(String image, String desc) {
+        System.out.println("image=="+image);
+        System.out.println("desc=="+desc);
+        return desc;
     }
 }
