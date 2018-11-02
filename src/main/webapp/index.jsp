@@ -27,6 +27,14 @@
     <input type="file" name="file"><br/>
     <input type="submit"value="提交"/>
 </form>
+<a href="/import/template"><h2>测试导出Excel模版文档</h2></a>
+<a href="/export"><h2>测试导出Excel内容文档</h2></a>
+<h2>测试导入读取Excel文档</h2>
+<form action="/import2" method="post" enctype="multipart/form-data" >
+
+    <input type="file" name="multipartFile"><br/>
+    <input type="submit"value="提交"/>
+</form>
 
 </body>
 </html>
