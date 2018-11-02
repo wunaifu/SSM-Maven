@@ -44,6 +44,7 @@
                 <li data-options="attributes:{'url':'datagrid_pagination'}">数据表格的客户端分页</li>
                 <li data-options="attributes:{'url':'treegrid_pagination'}">树表格的客户端分页</li>
                 <li data-options="attributes:{'url':'datagrid_row_edit'}">数据表格的行编辑</li>
+                <li data-options="attributes:{'url':'datagrid_merge_cells'}">数据表格合并单元格</li>
                 <li data-options="attributes:{'url':'kindeditor'}">图片上传，富文本编辑器</li>
             </ul>
         </li>
