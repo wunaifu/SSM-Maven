@@ -54,12 +54,16 @@
        toolbar="#toolbar"
        url="user/list"
        data-options="
+            loadMsg:'加载中。。。',
+            striped:true,
             fitColumns:true,
             rownumbers:true,
             singleSelect:true,
             autoRowHeight:true,
             pagination:true,
-            pageSize:10"
+            pageNumber:1,
+            pageList:[{5,10,15,20,25}],
+            pageSize:5"
         >
     <thead>
     <tr>
