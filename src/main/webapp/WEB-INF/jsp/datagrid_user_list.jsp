@@ -62,7 +62,7 @@
             autoRowHeight:true,
             pagination:true,
             pageNumber:1,
-            pageList:[{5,10,15,20,25}],
+            pageList:[5,10,15,20,25],
             pageSize:5"
         >
     <thead>
