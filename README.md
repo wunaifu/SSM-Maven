@@ -1,4 +1,34 @@
 # SSM-Maven
+## hibernate事务例子
+```java
+Transaction ts = null;
+try {
+    ts = session.beginTransaction();
+    // 修改用户
+    User user = new User();
+    String password = "password";
+    String userPhone = "userPhone";
+    user.setUserName(userPhone);
+    user.setUserPhone(userPhone);
+    user.setUserAccount(userPhone);
+    user.setPassword(password);
+    session.save(user);
+    session.save(trapGroup);
+    ts.commit();
+} catch (Exception e) {
+    if(ts!=null) {
+        ts.rollback();
+    }
+    e.printStackTrace();
+    throw new RuntimeException(e.getMessage());
+} finally {
+    if(session!=null && session.isOpen()) {
+        session.close();
+    }
+}
+```
+
+
 ### Excel文档导入导出
 ### idea激活
 去 http://idea.lanyus.com/ 获取验证码，复制
