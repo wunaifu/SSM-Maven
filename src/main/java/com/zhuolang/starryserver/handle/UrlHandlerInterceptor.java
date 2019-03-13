@@ -18,7 +18,7 @@ public class UrlHandlerInterceptor implements HandlerInterceptor {
 
         //获取请求的url
         String url=request.getRequestURI();
-        System.out.println("HandlerInterceptor1......preHandle" + url);
+//        System.out.println("HandlerInterceptor1......preHandle" + url);
         //return false表示拦截，不向下执行
         //return true表示放行
         return true;
@@ -31,7 +31,7 @@ public class UrlHandlerInterceptor implements HandlerInterceptor {
     public void postHandle(HttpServletRequest request, HttpServletResponse response,
                            Object handler, ModelAndView modelAndView) throws Exception {
 
-        System.out.println("HandlerInterceptor1......postHandle");
+//        System.out.println("HandlerInterceptor1......postHandle");
 
     }
 
@@ -42,7 +42,7 @@ public class UrlHandlerInterceptor implements HandlerInterceptor {
                                 Object handler, Exception ex)
             throws Exception {
 
-        System.out.println("HandlerInterceptor1......afterHandle");
+//        System.out.println("HandlerInterceptor1......afterHandle");
 
     }
 }

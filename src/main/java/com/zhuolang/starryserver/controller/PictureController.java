@@ -26,15 +26,14 @@ public class PictureController {
 
 	@RequestMapping("/pic/upload")
 	@ResponseBody
-	public Map picUpload(MultipartFile uploadFile) {
-		HttpServletRequest request;
+	public Map picUpload(MultipartFile uploadFile,HttpServletRequest request) {
 		System.out.println("进入上传文件了。。。。。。");
 		//单个文件上传，返回文件上传后的名字
 		try {
 			//接收上传的文件
 			//取扩展名
-			//String resultStr = FileUploadUtil.uploadFile(uploadFile, request);
-			String resultStr = "1d326e0e-f63b-4174-a8d6-c6b5441123ec.png";
+			String resultStr = FileUploadUtil.uploadFile(uploadFile, request);
+//			String resultStr = "1d326e0e-f63b-4174-a8d6-c6b5441123ec.png";
 			System.out.println(IMAGE_SERVER_URL+resultStr);
 			//响应上传图片的url
 			Map result = new HashMap<>();
