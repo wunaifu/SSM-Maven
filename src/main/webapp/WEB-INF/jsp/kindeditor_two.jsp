@@ -2,13 +2,21 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8"%>
 <html>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://"
+            + request.getServerName() + ":" + request.getServerPort()
+            + path + "/";
+%>
+<base href="<%=basePath%>"></base>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>EasyUI例子整合</title>
-<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.6.2/themes/default/easyui.css" />
-<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.6.2/themes/icon.css" />
-<script type="text/javascript" src="js/jquery-easyui-1.6.2/jquery.min.js"></script>
-<script type="text/javascript" src="js/jquery-easyui-1.6.2/jquery.easyui.min.js"></script>
-<script type="text/javascript" src="js/jquery-easyui-1.6.2/locale/easyui-lang-zh_CN.js"></script>
+<%--<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.6.2/themes/default/easyui.css" />--%>
+<%--<link rel="stylesheet" type="text/css" href="js/jquery-easyui-1.6.2/themes/icon.css" />--%>
+<%--<script type="text/javascript" src="js/jquery-easyui-1.6.2/jquery.min.js"></script>--%>
+<%--<script type="text/javascript" src="js/jquery-easyui-1.6.2/jquery.easyui.min.js"></script>--%>
+<%--<script type="text/javascript" src="js/jquery-easyui-1.6.2/locale/easyui-lang-zh_CN.js"></script>--%>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <style type="text/css">
     .content {
         padding: 10px 10px 10px 10px;
