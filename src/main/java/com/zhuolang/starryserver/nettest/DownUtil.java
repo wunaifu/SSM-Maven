@@ -142,13 +142,13 @@ public class DownUtil {
 
     public static void main(String[] args) {
         System.out.println("****************下载*****************");
-        List<String> stringList = new ArrayList<>();
-        for (int i = 0; i < 5; i++) {
-            stringList.add("1821911162" + i);
-        }
-        for (int i = 0; i < stringList.size(); i++) {
-            String fileUrl = "http://qr.topscan.com/api.php?text="+stringList.get(i)+".png";
-            String fileName = stringList.get(i)+ fileUrl.substring(fileUrl.lastIndexOf("."));
+//        List<String> stringList = new ArrayList<>();
+//        for (int i = 0; i < 5; i++) {
+//            stringList.add("1821911162" + i);
+//        }
+//        for (int i = 0; i < stringList.size(); i++) {
+            String fileUrl = "http://other.web.nf01.sycdn.kuwo.cn/resource/n1/68/9/4199826850.mp3";
+            String fileName = "sadfasd"+ fileUrl.substring(fileUrl.lastIndexOf("."));
             // 初始化DownUtil对象
             DownUtil downUtil = new DownUtil(fileUrl, fileName, 1);
 //            new Thread(new Runnable() {
@@ -184,7 +184,7 @@ public class DownUtil {
                     }
 //                }
 //            }).start();
-        }
+//        }
 
     }
 

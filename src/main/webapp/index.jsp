@@ -3,6 +3,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8"%>
 <html>
 <body>
+<input checked name=power type=radio value=leader>社长
+<input checked name=power type=radio value=student>社员
 <input type="text"
             value="<fmt:formatDate value="<%=new Date()%>"
             pattern="yyyy-MM-dd HH:mm:ss"/>"/>

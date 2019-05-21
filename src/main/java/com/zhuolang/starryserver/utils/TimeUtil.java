@@ -1,5 +1,7 @@
 package com.zhuolang.starryserver.utils;
 
+import com.zhuolang.starryserver.dto.GenderEnum;
+
 import java.sql.Timestamp;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -184,5 +186,11 @@ public class TimeUtil {
         Date date = new Date(lt);
         res = simpleDateFormat.format(date);
         return res;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(GenderEnum.getGenderEnum(0));
+        System.out.println(GenderEnum.getGenderEnum(1));
+        System.out.println(GenderEnum.getGenderEnum(2));
     }
 }
